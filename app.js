@@ -1,3 +1,0 @@
-const items=document.querySelectorAll('.nav-item');const views=document.querySelectorAll('.view');const title=document.getElementById('pageTitle');
-const titles={dashboard:'لوحة التحكم',employees:'الموظفون',roles:'الوظائف',tracks:'المسارات',kpis:'KPI Builder',complaints:'الشكاوى'};
-items.forEach(item=>item.addEventListener('click',()=>{items.forEach(i=>i.classList.remove('active'));views.forEach(v=>v.classList.remove('active'));item.classList.add('active');const view=item.dataset.view;document.getElementById(view).classList.add('active');title.textContent=titles[view]}));
