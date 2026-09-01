@@ -1,0 +1,15 @@
+-- KPIsEcosystem v4
+-- No new schema is required beyond the generic kpe_* schema from v3.
+-- Existing tables already support:
+-- kpe_projects
+-- kpe_job_roles
+-- kpe_role_responsibilities
+-- kpe_kpi_templates
+-- kpe_kpi_template_items
+-- kpe_employees
+-- kpe_employee_assignments
+-- kpe_tasks
+-- kpe_evaluations
+-- kpe_evaluation_results
+--
+-- Next step is adding RLS policies + Auth + frontend Supabase client.

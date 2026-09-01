@@ -37,31 +37,33 @@
       </div>
       <div class="top-actions">
         <select id="globalProjectSelect"></select>
-        <span class="pill">MVP v3</span>
+        <span class="pill">MVP v4</span>
       </div>
     </header>
 
     <section id="dashboard" class="view active">
       <div class="hero">
         <span class="eyebrow">Performance Operating System</span>
-        <h3>حوّل أي وظيفة ومهامها إلى KPI System قابل للقياس.</h3>
-        <p>أضف مشروعك، أنشئ المسمى الوظيفي، الصق المهام، وسيقترح النظام KPIs قابلة للتعديل والحفظ كـTemplate.</p>
+        <h3>من المسمى الوظيفي والمهام إلى KPIs وتقييم وتقارير أداء.</h3>
+        <p>النسخة دي فيها دورة تشغيل كاملة: Project → Role → KPI Template → Employee → Evaluation → Report.</p>
       </div>
 
       <div class="cards">
         <article class="card"><span>المشاريع</span><strong id="dashboardProjects">0</strong><small>Workspaces مستقلة</small></article>
-        <article class="card"><span>المسميات الوظيفية</span><strong id="dashboardRoles">0</strong><small>داخل كل مشروع</small></article>
-        <article class="card"><span>KPI Templates</span><strong id="dashboardTemplates">0</strong><small>قوالب معتمدة</small></article>
-        <article class="card"><span>المهام المفتوحة</span><strong id="dashboardTasks">0</strong><small>Task Management</small></article>
+        <article class="card"><span>الموظفون</span><strong id="dashboardEmployees">0</strong><small>مرتبطين بالوظائف</small></article>
+        <article class="card"><span>قوالب KPI</span><strong id="dashboardTemplates">0</strong><small>قابلة للتعديل</small></article>
+        <article class="card"><span>متوسط الأداء</span><strong id="dashboardAvg">—</strong><small>من التقييمات المكتملة</small></article>
       </div>
 
       <div class="panel">
         <span class="eyebrow">Quick Start</span>
-        <h3>ابدأ في 3 خطوات</h3>
-        <div class="steps">
-          <div><b>1</b><span>اعمل Project</span></div>
-          <div><b>2</b><span>ضيف Job Role والمهام</span></div>
-          <div><b>3</b><span>Generate KPIs واحفظ Template</span></div>
+        <h3>ابدأ في 5 خطوات</h3>
+        <div class="steps five">
+          <div><b>1</b><span>Project</span></div>
+          <div><b>2</b><span>Job Role + Tasks</span></div>
+          <div><b>3</b><span>Generate / Edit KPI Template</span></div>
+          <div><b>4</b><span>Add Employee</span></div>
+          <div><b>5</b><span>Evaluate & Report</span></div>
         </div>
       </div>
     </section>
@@ -74,14 +76,14 @@
         </div>
 
         <form id="projectForm" class="inline-form hidden">
-          <input id="projectName" required placeholder="اسم المشروع - مثال: المحطات السبع / Grow Club / شركة تسويق">
-          <input id="projectIndustry" placeholder="المجال - مثال: تعليم / فتنس / تسويق">
+          <input id="projectName" required placeholder="اسم المشروع">
+          <input id="projectIndustry" placeholder="المجال">
           <button class="primary" type="submit">حفظ</button>
           <button class="secondary" type="button" id="cancelProject">إلغاء</button>
         </form>
 
         <div id="projectsList" class="grid-list"></div>
-        <div id="emptyProjects" class="empty-state">لسه مفيش مشاريع. اعمل أول Project عشان تبدأ.</div>
+        <div id="emptyProjects" class="empty-state">لسه مفيش مشاريع.</div>
       </div>
     </section>
 
@@ -103,7 +105,7 @@
           </div>
           <div class="wide">
             <label>المهام والمسؤوليات</label>
-            <textarea id="roleResponsibilities" rows="8" placeholder="- متابعة التشغيل&#10;- إعداد التقارير&#10;- قيادة الفريق&#10;- حل المشكلات"></textarea>
+            <textarea id="roleResponsibilities" rows="8" placeholder="- متابعة التشغيل&#10;- إعداد التقارير&#10;- قيادة الفريق"></textarea>
           </div>
           <div class="wide actions-row">
             <button class="primary" type="submit">حفظ الوظيفة</button>
@@ -112,14 +114,14 @@
         </form>
 
         <div id="rolesList" class="grid-list"></div>
-        <div id="emptyRoles" class="empty-state">ضيف مسمى وظيفي ومهامه، وبعدها روح KPI Generator.</div>
+        <div id="emptyRoles" class="empty-state">ضيف مسمى وظيفي ومهامه.</div>
       </div>
     </section>
 
     <section id="generator" class="view">
       <div class="panel">
         <div class="panel-head">
-          <div><span class="eyebrow">AI-style KPI Builder</span><h3>KPI Generator ✨</h3></div>
+          <div><span class="eyebrow">Smart KPI Builder</span><h3>KPI Generator ✨</h3></div>
           <button class="secondary" id="resetGenerated">مسح النتائج</button>
         </div>
 
@@ -139,7 +141,7 @@
 
         <div class="generator-actions">
           <button class="primary big" id="generateBtn">✨ Generate KPIs</button>
-          <span class="hint">النسخة الحالية تستخدم Rules ذكية محليًا. لاحقًا نوصلها بـAI API.</span>
+          <span class="hint">النسخة الحالية Rules Engine محلي. لاحقًا نوصلها بـAI API.</span>
         </div>
 
         <div id="generatedSummary" class="summary hidden"></div>
@@ -154,10 +156,38 @@
 
     <section id="templates" class="view">
       <div class="panel">
-        <span class="eyebrow">KPI Templates</span>
-        <h3>القوالب المحفوظة</h3>
+        <div class="panel-head">
+          <div><span class="eyebrow">Templates</span><h3>KPI Templates</h3></div>
+        </div>
         <div id="templatesList" class="grid-list"></div>
         <div id="emptyTemplates" class="empty-state">مفيش Templates محفوظة لسه.</div>
+      </div>
+
+      <div id="templateEditorPanel" class="panel hidden editor-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">Template Editor</span>
+            <h3 id="editorTemplateTitle">تعديل الـTemplate</h3>
+          </div>
+          <button class="secondary" id="closeTemplateEditor">إغلاق</button>
+        </div>
+
+        <div class="editor-meta">
+          <div><label>اسم الـTemplate</label><input id="editorTemplateName"></div>
+          <div><label>المشروع</label><input id="editorTemplateProject" disabled></div>
+          <div><label>المسمى الوظيفي</label><input id="editorTemplateRole" disabled></div>
+        </div>
+
+        <div class="editor-actions">
+          <button class="primary" id="addManualKpi">+ إضافة KPI يدوي</button>
+          <span id="editorWeightSummary" class="summary-mini"></span>
+        </div>
+
+        <div id="editorKpis" class="kpi-list"></div>
+
+        <div class="save-row">
+          <button class="primary big" id="saveTemplateChanges">حفظ التعديلات</button>
+        </div>
       </div>
     </section>
 
@@ -170,8 +200,8 @@
 
         <form id="taskForm" class="task-form hidden">
           <div><label>المشروع</label><select id="taskProject"></select></div>
-          <div><label>اسم المهمة</label><input id="taskTitle" required placeholder="مثال: مراجعة التقرير الشهري"></div>
-          <div><label>المسؤول</label><input id="taskOwner" placeholder="اسم المسؤول"></div>
+          <div><label>اسم المهمة</label><input id="taskTitle" required></div>
+          <div><label>المسؤول</label><input id="taskOwner"></div>
           <div><label>الأولوية</label><select id="taskPriority"><option>متوسط</option><option>منخفض</option><option>مرتفع</option><option>عاجل</option></select></div>
           <div><label>موعد التسليم</label><input id="taskDue" type="date"></div>
           <div class="actions-row"><button class="primary" type="submit">حفظ</button><button class="secondary" type="button" id="cancelTask">إلغاء</button></div>
@@ -188,15 +218,105 @@
     </section>
 
     <section id="employees" class="view">
-      <div class="panel"><span class="eyebrow">People</span><h3>الموظفون</h3><p>المرحلة التالية: ربط الموظفين بالـProjects والـJob Roles والـKPI Templates.</p></div>
+      <div class="panel">
+        <div class="panel-head">
+          <div><span class="eyebrow">People</span><h3>الموظفون</h3></div>
+          <button class="primary" id="showEmployeeForm">+ موظف جديد</button>
+        </div>
+
+        <form id="employeeForm" class="employee-form hidden">
+          <div><label>المشروع</label><select id="employeeProject"></select></div>
+          <div><label>الاسم</label><input id="employeeName" required></div>
+          <div><label>المسمى الوظيفي</label><select id="employeeRole"></select></div>
+          <div><label>KPI Template</label><select id="employeeTemplate"></select></div>
+          <div><label>البريد</label><input id="employeeEmail" type="email"></div>
+          <div><label>الهاتف</label><input id="employeePhone"></div>
+          <div class="wide actions-row">
+            <button class="primary" type="submit">حفظ الموظف</button>
+            <button class="secondary" type="button" id="cancelEmployee">إلغاء</button>
+          </div>
+        </form>
+
+        <div id="employeesList" class="grid-list"></div>
+        <div id="emptyEmployees" class="empty-state">لسه مفيش موظفين.</div>
+      </div>
     </section>
 
     <section id="evaluations" class="view">
-      <div class="panel"><span class="eyebrow">Performance Reviews</span><h3>التقييمات</h3><p>المرحلة التالية: تقييم شهري، Actual vs Target، Final Score، وتعليقات المدير.</p></div>
+      <div class="panel">
+        <div class="panel-head">
+          <div><span class="eyebrow">Performance Reviews</span><h3>التقييمات</h3></div>
+          <button class="primary" id="showEvaluationForm">+ تقييم جديد</button>
+        </div>
+
+        <form id="evaluationForm" class="evaluation-form hidden">
+          <div><label>المشروع</label><select id="evaluationProject"></select></div>
+          <div><label>الموظف</label><select id="evaluationEmployee"></select></div>
+          <div><label>الفترة</label><input id="evaluationPeriod" type="month"></div>
+          <div class="wide actions-row">
+            <button class="primary" type="button" id="startEvaluation">بدء التقييم</button>
+            <button class="secondary" type="button" id="cancelEvaluation">إلغاء</button>
+          </div>
+        </form>
+
+        <div id="evaluationWorkspace" class="evaluation-workspace hidden">
+          <div class="evaluation-head">
+            <div>
+              <span class="eyebrow">Evaluation Workspace</span>
+              <h3 id="evaluationEmployeeName"></h3>
+              <div id="evaluationMeta" class="meta"></div>
+            </div>
+            <div class="score-box">
+              <span>Final Score</span>
+              <strong id="evaluationFinalScore">0.0</strong>
+            </div>
+          </div>
+
+          <div id="evaluationKpis" class="evaluation-kpis"></div>
+          <div class="evaluation-comments">
+            <label>تعليق المدير</label>
+            <textarea id="evaluationComment" rows="4"></textarea>
+          </div>
+          <div class="save-row">
+            <button class="primary big" id="saveEvaluation">حفظ التقييم</button>
+            <button class="secondary" id="closeEvaluationWorkspace">إغلاق</button>
+          </div>
+        </div>
+
+        <div id="evaluationsList" class="table-wrap"></div>
+        <div id="emptyEvaluations" class="empty-state">مفيش تقييمات محفوظة لسه.</div>
+      </div>
     </section>
 
     <section id="reports" class="view">
-      <div class="panel"><span class="eyebrow">Analytics</span><h3>التقارير</h3><p>المرحلة التالية: Performance Dashboard، Top/Low Performers، Trends، وRed Flags.</p></div>
+      <div class="panel">
+        <div class="panel-head">
+          <div><span class="eyebrow">Analytics</span><h3>تقارير الأداء</h3></div>
+        </div>
+
+        <div class="report-cards">
+          <article class="card"><span>عدد التقييمات</span><strong id="reportEvalCount">0</strong></article>
+          <article class="card"><span>متوسط الأداء</span><strong id="reportAvgScore">—</strong></article>
+          <article class="card"><span>أعلى أداء</span><strong id="reportTopScore">—</strong></article>
+          <article class="card"><span>أقل أداء</span><strong id="reportLowScore">—</strong></article>
+        </div>
+
+        <div class="report-grid">
+          <div class="subpanel">
+            <h4>Top Performers</h4>
+            <div id="topPerformers"></div>
+          </div>
+          <div class="subpanel">
+            <h4>Needs Attention</h4>
+            <div id="needsAttention"></div>
+          </div>
+        </div>
+
+        <div class="subpanel">
+          <h4>تفاصيل التقييمات</h4>
+          <div id="reportsTable" class="table-wrap"></div>
+        </div>
+      </div>
     </section>
   </main>
 

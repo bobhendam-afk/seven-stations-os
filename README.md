@@ -1,26 +1,38 @@
-# KPIsEcosystem v3
+# KPIsEcosystem v4
 
-Generic multi-project Performance Management System.
+A generic multi-project KPI and Performance Management MVP.
 
-## Core Flow
-Project → Job Role → Responsibilities → Generate KPIs → Review/Drag & Drop → Save Template → Assign Employees → Evaluate → Reports
+## Working Modules
+- Projects
+- Job Roles + Responsibilities
+- KPI Generator
+- KPI Templates
+- Full Template Editor:
+  - Edit KPI name
+  - Edit weight
+  - Edit target
+  - Edit type
+  - Edit formula
+  - Add manual KPI
+  - Delete KPI
+  - Drag & Drop reorder
+- Tasks
+- Employees
+- Employee → Project → Role → KPI Template linking
+- Evaluations
+- Automatic KPI score and weighted score
+- Final performance score
+- Reports:
+  - Evaluation count
+  - Average score
+  - Top score
+  - Low score
+  - Top performers
+  - Needs attention
+  - Detailed report table
 
-## Current Frontend MVP
-- Multiple projects
-- Job roles per project
-- Responsibilities
-- Smart local KPI generator
-- KPI cards with weight/target editing
-- Drag & drop ordering
-- Save KPI templates
-- Task management
-- LocalStorage persistence
+## Storage
+Current MVP uses browser localStorage.
 
-## Backend Migration
-Run `supabase_schema_v3.sql` in Supabase SQL Editor.
-It creates generic `kpe_*` tables and does NOT delete your existing `hr_*` tables.
-
-## Stack
-- Supabase
-- GitHub
-- Cloudflare
+## Next production step
+Replace localStorage operations with Supabase CRUD + Auth + RLS.
